@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/project/!svn/ver/188023/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/assets
+END
+voole.properties
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/project/!svn/ver/188023/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/assets/voole.properties
+END
+server.apk
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/project/!svn/ver/161942/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/assets/server.apk
+END
+videodaemon
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/project/!svn/ver/186766/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/assets/videodaemon
+END
+vooleauth.conf
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/project/!svn/ver/173596/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/assets/vooleauth.conf
+END
+vooleauthd
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/project/!svn/ver/173596/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/assets/vooleauthd
+END
+voolert.conf
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/project/!svn/ver/184005/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/assets/voolert.conf
+END

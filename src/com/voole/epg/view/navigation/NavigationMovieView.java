@@ -1,0 +1,359 @@
+package com.voole.epg.view.navigation;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Rect;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.voole.epg.Config;
+import com.voole.epg.R;
+import com.voole.epg.base.common.DisplayManager;
+import com.voole.epg.cooperation.MagicTVManager;
+import com.voole.epg.corelib.model.navigation.FilmClass;
+import com.voole.epg.corelib.model.navigation.NavigationManager;
+import com.voole.epg.view.movies.movie.MovieActivity;
+import com.voole.epg.view.movies.zy.ZYActivity;
+import com.voole.tvutils.ImageUtil;
+
+public class NavigationMovieView extends NavigationBaseView {
+	private static final int ITEM_SIZE = 12;
+	private static final int GET_DATA_SUCCESS = 1;
+
+	public ImageView imageView = null;
+	private LinearLayout layout_buttons = null;
+	private LinearLayout.LayoutParams layout_buttons_param = null;
+	protected NavigationMovieItemView[] itemViews = null;
+
+	private Context mContext=null;
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			if (msg.what == GET_DATA_SUCCESS) {
+				setItems();
+			}
+		}
+	};
+
+	public NavigationMovieView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		mContext=context;
+		init(context);
+	}
+
+	public NavigationMovieView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		mContext=context;
+		init(context);
+	}
+
+	public NavigationMovieView(Context context) {
+		super(context);
+		mContext=context;
+		init(context);
+	}
+
+	private void init(Context context) {
+		setFocusable(true);
+		setFocusableInTouchMode(true);
+		itemViews = new NavigationMovieItemView[ITEM_SIZE];
+		setOrientation(VERTICAL);
+		initUpButton(context);
+		initDownLayout(context);
+		layout_buttons.setVisibility(View.GONE);
+
+		new Thread() {
+			public void run() {
+				List<FilmClass> items = NavigationManager.GetInstance().getMainCategoryList();
+				if (items != null) {
+					navigationItems = new ArrayList<FilmClass>();
+					navigationItems.addAll(items);
+					Message message = Message.obtain();
+					message.what = GET_DATA_SUCCESS;
+					handler.sendMessage(message);
+				}
+			};
+		}.start();
+	}
+
+	private void initUpButton(Context context) {
+		imageView = new ImageView(context);
+		LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		param.gravity = Gravity.CENTER_HORIZONTAL;
+		imageView.setLayoutParams(param);
+		imageView.setImageBitmap(ImageUtil.getResourceBitmap(context,
+				R.drawable.cs_navigation_all_down));
+		imageView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				requestFocus();
+			}
+		});
+		addView(imageView);
+	}
+
+	private void initDownLayout(Context context) {
+		layout_buttons = new LinearLayout(context);
+		int width = DisplayManager.GetInstance().getScreenWidth() / 2;
+		int height = DisplayManager.GetInstance().getScreenHeight() * 2 / 5;
+		layout_buttons_param = new LinearLayout.LayoutParams(width, height);
+//		layout_buttons_param.bottomMargin = -1 * DisplayManager.GetInstance().getScreenHeight() * 2 / 5;
+		layout_buttons.setLayoutParams(layout_buttons_param);
+		layout_buttons.setOrientation(VERTICAL);
+		layout_buttons.setBackgroundResource(R.drawable.cs_navigation_all_bg);
+		layout_buttons.setPadding(70, 10, 70, 0);
+
+		initImg(context);
+		initUp(context);
+		initMiddle(context);
+		initDown(context);
+
+		addView(layout_buttons);
+	}
+
+	private void initImg(Context context) {
+		ImageView img = new ImageView(context);
+		LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		param.gravity = Gravity.CENTER_HORIZONTAL;
+		img.setLayoutParams(param);
+		img.setImageBitmap(ImageUtil.getResourceBitmap(context,
+				R.drawable.cs_navigation_all_up));
+		img.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				clearFocus();
+			}
+		});
+		layout_buttons.addView(img);
+	}
+
+	private void initUp(Context context) {
+		LinearLayout layout = new LinearLayout(context);
+		LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 1);
+		param.topMargin = 10;
+		layout.setLayoutParams(param);
+		for (int i = 0; i < ITEM_SIZE / 3; i++) {
+			itemViews[i] = new NavigationMovieItemView(context);
+			LinearLayout.LayoutParams param_item = new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 1);
+			itemViews[i].setLayoutParams(param_item);
+			layout.addView(itemViews[i]);
+		}
+		layout_buttons.addView(layout);
+	}
+
+	private void initMiddle(Context context) {
+		LinearLayout layout = new LinearLayout(context);
+		LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 1);
+		param.topMargin = 10;
+		layout.setLayoutParams(param);
+		for (int i = ITEM_SIZE / 3; i < ITEM_SIZE / 3 * 2; i++) {
+			itemViews[i] = new NavigationMovieItemView(context);
+			LinearLayout.LayoutParams param_item = new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 1);
+			itemViews[i].setLayoutParams(param_item);
+			layout.addView(itemViews[i]);
+		}
+		layout_buttons.addView(layout);
+	}
+
+	private void initDown(Context context) {
+		LinearLayout layout = new LinearLayout(context);
+		LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 1);
+		param.bottomMargin = 10;
+		layout.setLayoutParams(param);
+		for (int i = ITEM_SIZE / 3 * 2; i < ITEM_SIZE; i++) {
+			itemViews[i] = new NavigationMovieItemView(context);
+			LinearLayout.LayoutParams param_item = new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 1);
+			itemViews[i].setLayoutParams(param_item);
+			layout.addView(itemViews[i]);
+		}
+		layout_buttons.addView(layout);
+	}
+
+	public void setItems() {
+		if("1".equals(Config.GetInstance().getShowtv())){
+			FilmClass live = new FilmClass();
+			live.setFilmClassName("优朋TV");
+			navigationItems.add(0, live);
+		}
+		int endIndex = ITEM_SIZE;
+		if (navigationItems != null) {
+			if (navigationItems.size() < ITEM_SIZE) {
+				endIndex = navigationItems.size();
+			}
+			for (int i = 0; i < endIndex; i++) {
+				itemViews[i].setItem(navigationItems.get(i));
+			}
+		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_DPAD_LEFT:
+			if (selectedItemIndex > 0) {
+				itemViews[selectedItemIndex].setSelected(false);
+				itemViews[--selectedItemIndex].setSelected(true);
+			}
+			return true;
+		case KeyEvent.KEYCODE_DPAD_RIGHT:
+			if (selectedItemIndex < navigationItems.size() - 1) {
+				itemViews[selectedItemIndex].setSelected(false);
+				itemViews[++selectedItemIndex].setSelected(true);
+			}
+			return true;
+		case KeyEvent.KEYCODE_DPAD_UP:
+			if (selectedItemIndex >= ITEM_SIZE / 3) {
+				itemViews[selectedItemIndex].setSelected(false);
+				selectedItemIndex -= ITEM_SIZE / 3;
+				itemViews[selectedItemIndex].setSelected(true);
+				return true;
+			}
+			return false;
+		case KeyEvent.KEYCODE_DPAD_DOWN:
+			if (selectedItemIndex < ITEM_SIZE / 3 * 2
+					&& selectedItemIndex < navigationItems.size()) {
+				if ((selectedItemIndex + ITEM_SIZE / 3) < navigationItems
+						.size()) {
+					itemViews[selectedItemIndex].setSelected(false);
+					selectedItemIndex += ITEM_SIZE / 3;
+					itemViews[selectedItemIndex].setSelected(true);
+					return true;
+				}
+			}
+
+			// if(selectedItemIndex < ITEM_SIZE / 3 * 2 &&
+			// navigationItems.size() > ITEM_SIZE / 3 * 2){
+			// itemViews[selectedItemIndex].setSelected(false);
+			// if((selectedItemIndex + ITEM_SIZE / 3) < navigationItems.size()){
+			// selectedItemIndex += ITEM_SIZE / 3;
+			// }else{
+			// selectedItemIndex = navigationItems.size() - 1;
+			// }
+			// itemViews[selectedItemIndex].setSelected(true);
+			// return true;
+			// }
+			return false;
+		case KeyEvent.KEYCODE_ENTER:
+		case KeyEvent.KEYCODE_DPAD_CENTER:
+			if (navigationItems == null || navigationItems.size() <= 0) {
+				return false;
+			}
+			if (selectedItemIndex < navigationItems.size()) {
+				// listener.onItemSelected(selectedItemIndex,
+				// navigationItems.get(selectedItemIndex));
+				if ("1".equalsIgnoreCase(Config.GetInstance().getShowtv())) {
+					if (selectedItemIndex == 0) {
+						try{
+							MagicTVManager.startMagicTV(mContext);
+						}catch (Exception e) {
+							Toast.makeText(mContext, "未安装优朋台", 3000).show();
+						}
+						return true;
+					}
+				}
+
+				if (NavigationManager.ZY.equals(navigationItems.get(
+						selectedItemIndex).getTemplate())) {
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("navigation",
+							navigationItems.get(selectedItemIndex));
+					Intent intent = new Intent();
+					intent.putExtras(bundle);
+					intent.setClass(mContext, ZYActivity.class);
+					mContext.startActivity(intent);
+				} else if (NavigationManager.LIFE.equals(navigationItems.get(
+						selectedItemIndex).getTemplate())) {
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("navigation",
+							navigationItems.get(selectedItemIndex));
+					Intent intent = new Intent();
+					intent.putExtras(bundle);
+					intent.setClass(mContext, ZYActivity.class);
+					mContext.startActivity(intent);
+				}else if(NavigationManager.FK.equals(navigationItems.get(
+						selectedItemIndex)
+						.getTemplate())){
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("navigation", navigationItems.get(selectedItemIndex));
+					Intent intent = new Intent();
+					intent.putExtras(bundle);
+//					intent.setClass(mContext,com.voole.epg.f4k_download.F4KListActivity.class);
+					intent.setClass(mContext,com.voole.epg.download.FilmListActivity.class);
+					mContext.startActivity(intent);
+				} 
+				else {
+					Bundle bundle = new Bundle();
+					bundle.putSerializable("navigation",
+							navigationItems.get(selectedItemIndex));
+					Intent intent = new Intent();
+					intent.putExtras(bundle);
+					intent.setClass(mContext, MovieActivity.class);
+					mContext.startActivity(intent);
+				}
+				if (mContext instanceof Activity) {
+					((Activity) mContext).finish();
+				}
+				return true;
+			}
+			return false;
+		default:
+			return false;
+		}
+	}
+
+	@Override
+	protected void onFocusChanged(boolean gainFocus, int direction,
+			Rect previouslyFocusedRect) {
+		if (navigationItems == null || navigationItems.size() <= 0) {
+			return;
+		}
+		if (gainFocus) {
+			showItems();
+		} else {
+			hideItems();
+		}
+		super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
+	}
+
+	private void showItems() {
+		/*Animation animationUp = new TranslateAnimation(0, 0,DisplayManager.GetInstance().getScreenHeight() * 2 / 5, 0);
+		animationUp.setDuration(500);
+		animationUp.setFillAfter(false); 
+		layout_buttons_param.bottomMargin = 0;
+		layout_buttons.startAnimation(animationUp);*/
+		layout_buttons.setVisibility(View.VISIBLE);
+		imageView.setVisibility(View.GONE);
+		itemViews[selectedItemIndex].setSelected(true);
+	}
+
+	private void hideItems() {
+		/*Animation animationDown = new TranslateAnimation(0, 0,-1 * DisplayManager.GetInstance().getScreenHeight() * 2 / 5, 0);
+		animationDown.setDuration(500);
+		animationDown.setFillAfter(false); 
+		layout_buttons_param.bottomMargin = -1 * DisplayManager.GetInstance().getScreenHeight() * 2 / 5;
+		layout_buttons.startAnimation(animationDown);*/
+		layout_buttons.setVisibility(View.GONE);
+		imageView.setVisibility(View.VISIBLE);
+		itemViews[selectedItemIndex].setSelected(false);
+	}
+}

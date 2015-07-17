@@ -1,0 +1,15 @@
+versionDisplayText=2.0.17_HAIER_RTK2992_TEST_20140217.154557
+alipay=1
+appid=130
+showtv=1
+downloadurl=http://appinterface.voole.com/interface/appplatform_Download_download.htm?oemid=797&packagename=com.voole.epg&version=1.1&partnerid=2011&sdkversion=2.2&uid=0&hid=123456789012&appid=47
+upgradeurl=http://appinterface.voole.com/interface/appplatform_UpdateCheck_updateCheck.htm?
+PageReportUrl=http://appinterface.voole.com/interface/appplatform_PageActionReport_actionReport.htm
+keycodetype=Standard
+versionCode=2.0.17
+# if true up or down controlvalue
+controlVolume=false
+oemType=TCL_Desktop
+installServer=0
+clearAuthConfig=1
+bootStartAuth=1

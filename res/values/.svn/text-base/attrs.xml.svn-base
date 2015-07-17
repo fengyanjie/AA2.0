@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<resources>  
+    <declare-styleable name="MovieView">  
+        <attr name="itemSize" format="integer" />  
+        <attr name="displayArrow" format="boolean" />  
+        <attr name="textSize" format="integer" />
+        <attr name="imgWeight" format="integer" />  
+        <attr name="textWeight" format="integer" />
+    </declare-styleable>  
+</resources>  

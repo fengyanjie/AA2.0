@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/project/!svn/ver/230474/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch
+END
+SearchBarView.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/project/!svn/ver/148451/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/SearchBarView.java
+END
+SearchView.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/project/!svn/ver/147884/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/SearchView.java
+END
+TabItemView.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/project/!svn/ver/154570/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/TabItemView.java
+END
+KeyboardView.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/project/!svn/ver/230474/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/KeyboardView.java
+END
+SearchResultView.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/project/!svn/ver/154570/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/SearchResultView.java
+END
+SearchTitleBarView.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/project/!svn/ver/154570/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/SearchTitleBarView.java
+END
+FindCatView.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/project/!svn/ver/148451/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/FindCatView.java
+END
+ConditionView.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/project/!svn/ver/154570/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/ConditionView.java
+END
+FindView.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/project/!svn/ver/154570/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/FindView.java
+END
+SearchListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/project/!svn/ver/147884/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/SearchListener.java
+END
+TabView.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/project/!svn/ver/148451/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/TabView.java
+END
+SearchActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/project/!svn/ver/148451/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/SearchActivity.java
+END
+NewSearchActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/project/!svn/ver/148451/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/NewSearchActivity.java
+END
+SearchHotFragment.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/project/!svn/ver/147884/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/SearchHotFragment.java
+END
+SearchResultFragment.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/project/!svn/ver/147884/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/SearchResultFragment.java
+END
+ConditionItemView.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/project/!svn/ver/147884/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/ConditionItemView.java
+END
+HotView.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/project/!svn/ver/154570/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/HotView.java
+END
+FindItemView.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/project/!svn/ver/147884/01Dev/VOOLEPLAYAPK/2.0.0_GENERIC/SRC/VooleEpg2.0/src/com/voole/epg/view/newsearch/FindItemView.java
+END
